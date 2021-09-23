@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyTherapy">
         <activity
+            android:name=".Medicamento"
+            android:exported="true" />
+        <activity
+            android:name=".Chat"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
