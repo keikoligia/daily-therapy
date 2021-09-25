@@ -1,9 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Medicamento">
+    tools:context=".Medicamento"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:onClick="selectDate"
+    tools:ignore="OnClick">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="691dp"
+        android:height="40dp"
+        android:background="@color/azul"
+        android:backgroundTint="@color/azul"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Selecionar medicamento"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtTermino2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="308dp"
+        android:ems="10"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/edtTermino1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="356dp"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="403dp"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Término:"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <ImageButton
+        android:id="@+id/imgBtnTermino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="305dp"
+        android:layout_toRightOf="@+id/edtInicio2"
+        android:onClick="selectDate"
+        android:src="@drawable/ic_baseline_date_range_24" />
+
+    <EditText
+        android:id="@+id/edtInicio2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="450dp"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Duração"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="544dp"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Início:"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/edtInicio1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="189dp"
+        android:ems="10"
+        android:inputType="date">
+
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/imgBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="453dp"
+        android:layout_toRightOf="@+id/edtInicio2"
+        android:onClick="selectDate"
+        android:src="@drawable/ic_baseline_date_range_24" />
+
+    <requestFocus />
+
+    <requestFocus />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Nome do medicamento" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="445dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Frequência"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="" />
+
+    <RadioGroup
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="481dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="45dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewaybold"
+            android:text="Dias específicos" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewaybold"
+
+            android:text="Diaramente" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewaybold"
+            android:text="Semanalmente" />
+
+        <EditText
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewaybold"
+            android:text="Horário"
+            android:textSize="18dp" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/azul"
+        android:text="Salvar"
+        android:textColor="@color/black"/>
+</RelativeLayout>
