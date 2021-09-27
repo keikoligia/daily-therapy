@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyTherapy">
         <activity
+            android:name=".Inicio"
+            android:exported="true" />
+        <activity
+            android:name=".Cadastro"
+            android:exported="true" />
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+        <activity
             android:name=".Medicamento"
             android:exported="true" />
         <activity
