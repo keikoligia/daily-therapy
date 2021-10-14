@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Chat">
+
+    <TextView
+        android:layout_width="425dp"
+        android:layout_height="59dp"
+        android:background="@color/azul"
+        android:backgroundTint="@color/azul"
+        android:fontFamily="@font/ralewaybold"
+        android:text="  Ligia"
+        android:textColor="@color/black"
+        android:textSize="40dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/ralewaybold"
+            android:text="Necessito de ajuda com os medicamentos"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/ralewaybold"
+            android:text="Ingeri o medicamento errado"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewaybold"
+            android:text="Esqueci o horário do medicamento"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
+                android:gravity="right"
+                android:text="Digitar....                                   "
+                android:textSize="25dp" />
+
+        </RadioButton>
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="40dp"
+        android:height="70dp"
+        android:backgroundTint="@color/azul"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Enviar"
+        android:textSize="25dp" />
+
+</LinearLayout>
