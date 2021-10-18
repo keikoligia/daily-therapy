@@ -44,7 +44,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/ralewaybold"
-        android:text="Digite o númerodo seu contato de emergência:"
+        android:text="Digite o número do seu contato de emergência:"
         android:textColor="@color/black"
         android:textSize="20dp" />
 

@@ -48,7 +48,7 @@ app.post("/usuario:/nome", (req, res, next) => {
 
 app.put("/usuario/:id", (req, res, next) => {
   var user = req.body; // pega as informacoes da requisicao
-  var query = "INSERT INTO USUARIO (nome, email, senha) VALUES('" + user.nome + "','" + user.email + "','" + user.senha + "')";
+  var query = "INSERT INTO USUARIO (nome, contato, email, senha) VALUES('" + user.nome + "','" + user.contato + "','" + user.email + "','" + user.senha + "')";
 
   conex.query(query, function (error, result, fields){
     conex.on('error', function(err){
@@ -75,6 +75,49 @@ app.delete("/usuario/delete/:id", (req, res, next) => {
   });
 });
 
+app.post("/usuario/remedio/:id", (req, res, next) => {
+  var query = "SELECT * FROM remedio WHERE nome LIKE '%" + req.params.id + "%'";
+
+  conex.query(query, function (error, result, fields){
+    conex.on('error', function(err){
+      console.log("DEU ERRO NO MYSQL", err);
+    });
+    if(result && result.length)
+      res.end(JSON.stringify(result));
+    else
+      res.end(JSON.stringify('Nenhum remedio p/ resgatar'));
+  });
+});
+
+app.put("/usuario/remedio/:id", (req, res, next) => {
+  var remedio = req.body; // pega as informacoes da requisicao
+  var query = "INSERT INTO REMEDIO (nomeRemedio, horario) VALUES('" + remedio.nomeRemedio + "','" + remedio.horario + "')";
+
+  conex.query(query, function (error, result, fields){
+    conex.on('error', function(err){
+      console.log("ERRO NO MYSQL", err);
+    });
+    if(result && result.length)
+      res.end(JSON.stringify(result));
+    else
+      res.end(JSON.stringify('Erro ao inserir remedio'));
+  });
+});
+
+app.delete("/usuario/remedio/delete/:id", (req, res, next) => {
+  var query = "DELETE FROM REMEDIO WHERE idRemedio = " + req.params.id;
+
+  conex.query(query, function (error, result, fields){
+    conex.on('error', function(err){
+      console.log("ERRO NO MYSQL", err);
+    });
+    if(result && result.length)
+      res.end(JSON.stringify(result));
+    else
+      res.end(JSON.stringify('Erro ao deletar remedio'));
+  });
+});
+
 /*
 app.put('/put/:id', (req, res) => {
   const id = req.params.id;
@@ -85,9 +128,8 @@ app.put('/put/:id', (req, res) => {
   item.image = req.body.image;        
                
   return res.json({data});
-});*/
 
-app.delete('/api/dog/delete/:id', (req, res) => {
+  app.delete('/api/dog/delete/:id', (req, res) => {
   const id = req.params.id;
   const index = data.findIndex(item => item.id == id);
   data.splice(index,1)
@@ -95,6 +137,7 @@ app.delete('/api/dog/delete/:id', (req, res) => {
   
   return res.json({data})
 })
+});*/
 
 app.listen(3000, () => {
   console.log("APP RODANDO NA PORTA 3000");
