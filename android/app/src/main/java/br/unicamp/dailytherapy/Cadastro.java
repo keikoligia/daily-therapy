@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -48,6 +53,36 @@ public class Cadastro extends AppCompatActivity {
 
                 startActivity(intent);
                 finish();
+            }
+        });
+    }
+
+    private void inserirUsuario()
+    {
+        String email         = edtEmail.getText().toString();
+        String cttEmergencia = edtCttEmergencia.getText().toString();
+        String nomeUsuario   = edtNomeUsuario.getText().toString();
+        String senha         = edtSenha.getText().toString();
+
+        Usuario user = new Usuario(nomeUsuario, email, senha, cttEmergencia);
+
+        Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
+        Call<Usuario> call = service.incluirUsuario(user);
+
+        call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if(response.isSuccessful())
+                {
+                    Intent intent = new Intent(Cadastro.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Toast.makeText(Cadastro.this, "", Toast.LENGTH_SHORT).show();
             }
         });
     }

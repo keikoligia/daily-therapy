@@ -10,24 +10,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Inicio extends AppCompatActivity {
 
     ImageView imgLogo;
-    TextView txtCadastro, txtLogin;
+    Button btnCadastro, btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_inicio);
 
         imgLogo = (ImageView) findViewById(R.id.imgLogo);
         //imgLogo.setImageResource(R.drawable.DailyTherapy);
 
-        txtCadastro = (TextView) findViewById(R.id.txtCadastro);
-        txtLogin    = (TextView) findViewById(R.id.txtLogin);
+        btnCadastro = (Button) findViewById(R.id.btnCadastro);
+        btnLogin    = (Button) findViewById(R.id.btnLogin);
 
-        txtCadastro.setOnClickListener(new View.OnClickListener() {
+        btnCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Inicio.this,Cadastro.class);
@@ -36,7 +41,7 @@ public class Inicio extends AppCompatActivity {
             }
         });
 
-        txtLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Inicio.this,Login.class);
@@ -44,6 +49,5 @@ public class Inicio extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

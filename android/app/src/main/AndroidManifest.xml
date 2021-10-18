@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyTherapy">
         <activity
-            android:name=".Inicio"
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".Cadastro"
@@ -25,7 +25,7 @@
             android:name=".Chat"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

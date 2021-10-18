@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
                 parametro.putString("sessaoNomeUsuario", nomeUsuario);
                 parametro.putString("sessaoSenha",senha);
 
-                Intent intent = new Intent(Login.this,MainActivity.class);
+                Intent intent = new Intent(Login.this, MainActivity.class);
                 intent.putExtras(parametro);
 
                 startActivity(intent);

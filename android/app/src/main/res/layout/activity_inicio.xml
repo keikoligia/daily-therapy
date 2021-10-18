@@ -26,24 +26,26 @@
         android:textSize="35dp"
         android:layout_gravity="center_horizontal|center_vertical"/>
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCadastro"
+        android:id="@+id/btnCadastro"
         android:fontFamily="@font/ralewaybold"
         android:text="Fazer Cadastro"
         android:textColor="@color/azul"
         android:textAlignment="center"
         android:layout_marginTop="60dp"
+        android:backgroundTint="@color/white"
         android:textSize="20dp"/>
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtLogin"
+        android:id="@+id/btnLogin"
         android:fontFamily="@font/ralewaybold"
         android:text="Login"
         android:textColor="@color/azul"
+        android:backgroundTint="@color/white"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:textSize="20dp" />
