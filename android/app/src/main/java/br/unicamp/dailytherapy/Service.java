@@ -12,15 +12,15 @@ import retrofit2.http.Path;
 
 interface Service
 {
-    @GET("/api/dog/get")
-    Call<List<Dog>> getDog();
+    @GET("/usuarios")
+    Call<List<Usuario>> getUsuario();
 
-    @DELETE("/api/dog/delete/{id}")
-    Call<Dog> excluirDog(@Path("id") String id);
+    @DELETE("/usuario/delete/:id")
+    Call<Usuario> excluirUsuario(@Path("id") String id);
 
     @POST("/api/dog/post")
-    Call<Dog> incluirDog(@Body Dog dog);
+    Call<Usuario> incluirUsuario(@Body Usuario usuario);
 
-    @PUT("/api/dog/put/{id}")
-    Call<Dog> alterarDog(@Path("id") String id, @Body Dog dog);
+    @PUT("/usuario/:id")
+    Call<Usuario> alterarUsuario(@Path("id") String id, @Body Usuario usuario);
 }
