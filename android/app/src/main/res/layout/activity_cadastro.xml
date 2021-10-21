@@ -27,7 +27,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/ralewaybold"
-        android:text="Digite seu email:"
+        android:text="Email:"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
@@ -44,12 +44,29 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/ralewaybold"
-        android:text="Digite o número do seu contato de emergência:"
+        android:text="Número do seu contato de emergência:"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
     <EditText
         android:id="@+id/edtCttEmergencia"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Nome do seu contato de emergência:"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtNomeCtt"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"

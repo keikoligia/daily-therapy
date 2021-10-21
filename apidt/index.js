@@ -48,7 +48,7 @@ app.post("/usuario:/nome", (req, res, next) => {
 app.post("/usuario", (req, res, next) => {
   console.log("Chegou")
   var user = req.body; // pega as informacoes da requisicao
-  var query = "INSERT INTO USUARIO (nome, contato, email, senha) VALUES('" + user.nome + "','" + user.contato + "','" + user.email + "','" + user.senha + "')";
+  var query = "INSERT INTO USUARIO (nome, contato, nomeContato, email, senha) VALUES('" + user.nome + "','" + user.contato + "','" + user.nomeContato + "','" + user.email + "','" + user.senha + "')";
 
   conex.query(query, function (error, result, fields){
     conex.on('error', function(err){

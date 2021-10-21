@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class Cadastro extends AppCompatActivity {
 
-    EditText edtEmail, edtCttEmergencia, edtNomeUsuario, edtSenha;
+    EditText edtEmail, edtCttEmergencia, edtNomeCtt, edtNomeUsuario, edtSenha;
     Button btnEntrar;
 
     @Override
@@ -31,6 +31,7 @@ public class Cadastro extends AppCompatActivity {
         edtNomeUsuario   = (EditText) findViewById(R.id.edtNomeUsuario);
         edtSenha         = (EditText) findViewById(R.id.edtSenha);
         btnEntrar        = (Button) findViewById(R.id.btnEntrar);
+        edtNomeCtt       = (EditText) findViewById(R.id.edtNomeCtt);
 
         btnEntrar.setOnClickListener(new View.OnClickListener()
         {
@@ -43,13 +44,15 @@ public class Cadastro extends AppCompatActivity {
 
     private void inserirUsuario()
     {
-        try{
+        try
+        {
             String email         = edtEmail.getText().toString();
             String cttEmergencia = edtCttEmergencia.getText().toString();
+            String nomeCtt = edtNomeCtt.getText().toString();
             String nomeUsuario   = edtNomeUsuario.getText().toString();
             String senha         = edtSenha.getText().toString();
 
-            Usuario user = new Usuario(nomeUsuario, cttEmergencia, email, senha);
+            Usuario user = new Usuario(nomeUsuario, cttEmergencia, nomeCtt, email, senha);
 
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             Call<Usuario> call = service.incluirUsuario(user);
