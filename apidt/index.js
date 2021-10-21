@@ -18,14 +18,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //selecionar todos os users 
 app.get("/usuarios", (req, res, next) => {
+  console.log("chegou 1");
   conex.query("SELECT * FROM USUARIO"),  function (error, result, fields){
     conex.on('error', function(err){
       console.log("DEU ERRO NO MYSQL", err);
     });
-    if(result && result.length)
-      res.end(JSON.stringify(result));
-    else
-      res.end(JSON.stringify('Nenhum usuario p/ resgatar'));
+      console.log("chegou 2");
+      return res.json(JSON.stringify(result))
   }
 });
 
@@ -46,7 +45,8 @@ app.post("/usuario:/nome", (req, res, next) => {
   });
 });
 
-app.put("/usuario/:id", (req, res, next) => {
+app.post("/usuario", (req, res, next) => {
+  console.log("Chegou")
   var user = req.body; // pega as informacoes da requisicao
   var query = "INSERT INTO USUARIO (nome, contato, email, senha) VALUES('" + user.nome + "','" + user.contato + "','" + user.email + "','" + user.senha + "')";
 
@@ -54,10 +54,11 @@ app.put("/usuario/:id", (req, res, next) => {
     conex.on('error', function(err){
       console.log("ERRO NO MYSQL", err);
     });
-    if(result && result.length)
-      res.end(JSON.stringify(result));
-    else
-      res.end(JSON.stringify('Nenhum usuario p/ inserir'));
+    console.log(result.insertId);
+    conex.query("SELECT * FROM USUARIO WHERE idUsuario= " + result.insertId, function(e, r, f){
+      console.log(r[0]);
+      return res.status(200).json(r[0]);
+    })
   });
 });
 
@@ -68,10 +69,7 @@ app.delete("/usuario/delete/:id", (req, res, next) => {
     conex.on('error', function(err){
       console.log("ERRO NO MYSQL", err);
     });
-    if(result && result.length)
-      res.end(JSON.stringify(result));
-    else
-      res.end(JSON.stringify('Nenhum usuario p/ deletar'));
+    return res.json(JSON.stringify(result));
   });
 });
 

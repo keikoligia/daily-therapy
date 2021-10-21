@@ -6,30 +6,41 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable
 {
-    @SerializedName("id")
-    private String id;
+    //@SerializedName("id")
+    //private String id;
     @SerializedName("nome")
     private String nome;
+    @SerializedName("contato")
+    private String contato;
     @SerializedName("email")
     private String email;
     @SerializedName("senha")
     private String senha;
 
-    Usuario(String id, String nome, String email, String senha)
+    public Usuario() { }
+
+    public Usuario(Usuario modelo) throws Exception{
+        this.nome = modelo.nome;
+        this.contato = modelo.contato;
+        this.email = modelo.email;
+        this.senha = modelo.senha;
+    }
+
+    public Usuario(String nome, String contato, String email, String senha)
     {
-        this.id = id;
         this.nome = nome;
+        this.contato = contato;
         this.email = email;
         this.senha = senha;
     }
 
-    public String getId() { return id; }
-
-    public void setId(String id) { this.id = id; }
-
     public String getNome() { return nome; }
 
     public void setNome(String nome) { this.nome = nome; }
+
+    public String getContato() { return contato; }
+
+    public void setContato(String contato) { this.contato = contato; }
 
     public String getEmail() { return email; }
 

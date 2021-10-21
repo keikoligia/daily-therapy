@@ -15,12 +15,12 @@ interface Service
     @GET("/usuarios")
     Call<List<Usuario>> getUsuario();
 
-    @DELETE("/usuario/delete/:id")
+    @DELETE("/usuario/delete/{id}")
     Call<Usuario> excluirUsuario(@Path("id") String id);
 
-    @POST("/api/dog/post")
-    Call<Usuario> incluirUsuario(@Body Usuario usuario);
+    @POST("/usuario/{nome}")
+    Call<Usuario> getUsuarioNome(@Path("nome") String nome, @Body Usuario usuario);
 
-    @PUT("/usuario/:id")
-    Call<Usuario> alterarUsuario(@Path("id") String id, @Body Usuario usuario);
+    @POST("/usuario")
+    Call<Usuario> incluirUsuario(@Body Usuario usuario);
 }
