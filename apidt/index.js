@@ -29,19 +29,25 @@ app.get("/usuarios", (req, res, next) => {
 });
 
 //selecionar user pelo nome
-app.post("/usuario:/nome", (req, res, next) => {
-  var postData = req.body; // pega as informacoes da requisicao
-  var nomeUsuario = postData.usuario;
-  var query = "SELECT * FROM USUARIO WHERE nome LIKE '%" + nomeUsuario + "%'";
+app.post("/usuario/login", (req, res, next) => {
+  var nomeUsuario = req.body;
+  console.log(nomeUsuario);
+  var query = "SELECT * FROM usuario WHERE nome =" + "'" + nomeUsuario.nome  + "'";
+  console.log(query);
 
   conex.query(query, function (error, result, fields){
     conex.on('error', function(err){
       console.log("DEU ERRO NO MYSQL", err);
     });
     if(result && result.length)
-      res.end(JSON.stringify(result));
+    {
+      return res.status(200).json(result[0]);
+    }
     else
-      res.end(JSON.stringify('Nenhum usuario p/ resgatar'));
+    {
+      return res.status(404).json({error: 'Usuario nao encontrado'});
+
+    }
   });
 });
 
@@ -54,9 +60,9 @@ app.post("/usuario", (req, res, next) => {
     conex.on('error', function(err){
       console.log("ERRO NO MYSQL", err);
     });
-    console.log(result.insertId);
+    console.log(result);
     conex.query("SELECT * FROM USUARIO WHERE idUsuario= " + result.insertId, function(e, r, f){
-      console.log(r[0]);
+      console.log(r);
       return res.status(200).json(r[0]);
     })
   });

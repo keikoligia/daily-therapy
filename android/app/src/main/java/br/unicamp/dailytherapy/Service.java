@@ -18,8 +18,8 @@ interface Service
     @DELETE("/usuario/delete/{id}")
     Call<Usuario> excluirUsuario(@Path("id") String id);
 
-    @POST("/usuario/{nome}")
-    Call<Usuario> getUsuarioNome(@Path("nome") String nome, @Body Usuario usuario);
+    @POST("/usuario")
+    Call<Usuario> getUsuarioNome(@Body Usuario usuario);
 
     @POST("/usuario")
     Call<Usuario> incluirUsuario(@Body Usuario usuario);

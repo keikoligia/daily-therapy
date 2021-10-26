@@ -54,6 +54,9 @@ public class Cadastro extends AppCompatActivity {
 
             Usuario user = new Usuario(nomeUsuario, cttEmergencia, nomeCtt, email, senha);
 
+            user.setNome(nomeUsuario);
+            user.setSenha(senha);
+
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             Call<Usuario> call = service.incluirUsuario(user);
 
