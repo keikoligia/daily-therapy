@@ -12,6 +12,7 @@ import retrofit2.http.Path;
 
 interface Service
 {
+    //usuario
     @GET("/usuarios")
     Call<List<Usuario>> getUsuario();
 
@@ -23,4 +24,8 @@ interface Service
 
     @POST("/usuario")
     Call<Usuario> incluirUsuario(@Body Usuario usuario);
+
+    //medicamento
+    @POST("/usuario/remedio")
+    Call<Remedio> incluirMedicamento(@Body Remedio remedio);
 }

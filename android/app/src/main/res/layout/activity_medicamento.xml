@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="selectDate"
     android:orientation="vertical"
     tools:context=".Medicamento"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="13dp"
     tools:ignore="OnClick">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="691dp"
+        android:id="@+id/textView"
+        android:layout_width="429dp"
+        android:layout_height="41dp"
         android:height="40dp"
         android:background="@color/azul"
         android:backgroundTint="@color/azul"
@@ -21,173 +23,362 @@
         android:text="Selecionar medicamento"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/edtTermino2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="21dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="308dp"
-        android:ems="10"
-        android:inputType="date" />
-
-    <EditText
-        android:id="@+id/edtTermino1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="356dp"
-        android:ems="10"
-        android:inputType="date" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="403dp"
+        android:id="@+id/edtNomeMedicamento"
+        android:layout_width="357dp"
+        android:layout_height="52dp"
         android:fontFamily="@font/ralewaybold"
         android:gravity="left"
-        android:text="Término:"
-        android:textColor="@color/black"
-        android:textSize="18dp" />
-
-    <ImageButton
-        android:id="@+id/imgBtnTermino"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="305dp"
-        android:onClick="selectDate"
-        android:src="@drawable/ic_baseline_date_range_24" />
-
-    <EditText
-        android:id="@+id/edtInicio2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="450dp"
-        android:ems="10"
-        android:inputType="date" />
+        android:hint="Nome do medicamento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="118dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="@font/ralewaybold"
-        android:gravity="left"
-        android:text="Duração"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textStyle="" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="544dp"
-        android:fontFamily="@font/ralewaybold"
-        android:gravity="left"
-        android:text="Início:"
-        android:textColor="@color/black"
-        android:textSize="18dp" />
-
-    <EditText
-        android:id="@+id/edtInicio1"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="189dp"
-        android:ems="10"
-        android:inputType="date">
-
-    </EditText>
-
-    <ImageButton
-        android:id="@+id/imgBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="453dp"
-        android:onClick="selectDate"
-        android:src="@drawable/ic_baseline_date_range_24" />
-
-    <requestFocus />
-
-    <requestFocus />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="@font/ralewaybold"
-        android:gravity="left"
-        android:text="Nome do medicamento" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="445dp"
-        android:layout_marginRight="20dp"
         android:fontFamily="@font/ralewaybold"
         android:gravity="left"
         android:text="Frequência"
         android:textColor="@color/black"
         android:textSize="18dp"
-        android:textStyle="" />
+        android:textStyle=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Dias"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
 
     <RadioGroup
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="481dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="45dp">
+        android:id="@+id/rgbDias"
+        android:layout_width="167dp"
+        android:layout_height="141dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.745">
 
         <RadioButton
+            android:id="@+id/rbDiaramente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/ralewaybold"
+            android:text="Diaramente"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="504dp" />
+
+        <RadioButton
+            android:id="@+id/rbEspecifico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ralewaybold"
-            android:text="Dias específicos" />
+            android:text="Dias específicos"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="552dp" />
 
         <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ralewaybold"
-
-            android:text="Diaramente" />
-
-        <RadioButton
+            android:id="@+id/rbSemanal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ralewaybold"
-            android:text="Semanalmente" />
-
-        <EditText
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ralewaybold"
-            android:text="Horário"
-            android:textSize="18dp" />
+            android:text="Semanalmente"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="456dp" />
     </RadioGroup>
 
-    <Button
-        android:layout_width="338dp"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/ralewaybold"
+        android:text="Horário"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="233dp"
+        android:layout_height="48dp"
         android:backgroundTint="@color/azul"
         android:text="Salvar"
-        android:textColor="@color/black" />
-</LinearLayout>
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903"
+        />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Duração"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Início:"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.274" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaythin"
+        android:gravity="left"
+        android:text="/"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaythin"
+        android:gravity="left"
+        android:text="/"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaythin"
+        android:gravity="left"
+        android:text="/"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.463" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaythin"
+        android:gravity="left"
+        android:text="/"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaythin"
+        android:gravity="left"
+        android:text="/"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.463" />
+
+    <EditText
+        android:id="@+id/edtInicioDia"
+        android:layout_width="45dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Dia"
+        android:inputType="date"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.322"
+        android:maxLength="2"/>
+
+    <EditText
+        android:id="@+id/edtFimDia"
+        android:layout_width="45dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Dia"
+        android:inputType="date"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.457"
+        android:maxLength="2"/>
+
+    <EditText
+        android:id="@+id/edtInicioMes"
+        android:layout_width="62dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Mês"
+        android:inputType="date"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.322"
+        android:maxLength="2"/>
+
+    <EditText
+        android:id="@+id/edtFimMes"
+        android:layout_width="62dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Mês"
+        android:inputType="date"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458"
+        android:maxLength="2"/>
+
+    <EditText
+        android:id="@+id/edtInicioAno"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Ano"
+        android:inputType="date"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.397"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.323"
+        android:maxLength="4"/>
+
+    <EditText
+        android:id="@+id/edtFimAno"
+        android:layout_width="53dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="Ano"
+        android:inputType="date"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.399"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.46"
+        android:maxLength="4"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="left"
+        android:text="Término:"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.405" />
+
+    <EditText
+        android:id="@+id/edtHorario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ralewaybold"
+        android:hint="hh:mm"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.685"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.642" />
+</androidx.constraintlayout.widget.ConstraintLayout>

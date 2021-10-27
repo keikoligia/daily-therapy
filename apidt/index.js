@@ -52,7 +52,6 @@ app.post("/usuario/login", (req, res, next) => {
 });
 
 app.post("/usuario", (req, res, next) => {
-  console.log("Chegou")
   var user = req.body; // pega as informacoes da requisicao
   var query = "INSERT INTO USUARIO (nome, contato, nomeContato, email, senha) VALUES('" + user.nome + "','" + user.contato + "','" + user.nomeContato + "','" + user.email + "','" + user.senha + "')";
 
@@ -60,9 +59,23 @@ app.post("/usuario", (req, res, next) => {
     conex.on('error', function(err){
       console.log("ERRO NO MYSQL", err);
     });
-    console.log(result);
     conex.query("SELECT * FROM USUARIO WHERE idUsuario= " + result.insertId, function(e, r, f){
-      console.log(r);
+      console.log(r[0]);
+      return res.status(200).json(r[0]);
+    })
+  });
+});
+
+app.post("/usuario/remedio", (req, res, next) => {
+  var remedio = req.body; 
+  //'INSERT INTO REMEDIO (nomeRemedio, DATE_FORMAT(horario, "%H:%i" ), frequencia, DATE_FORMAT(inicio, "%e/%c/%Y" ), DATE_FORMAT(fim, "%e/%c/%Y")) VALUES(' + remedio.nomeRemedio + "','" + remedio.horario + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "')"
+  var query = "INSERT INTO REMEDIO (nomeRemedio, horario, frequencia, inicio, fim) VALUES('"+ remedio.nomeRemedio + "','" + remedio.horario + "','" + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "')";
+  conex.query(query, function (error, result, fields){
+    conex.on('error', function(err){
+      console.log("ERRO NO MYSQL", err);
+    });
+    conex.query("SELECT * FROM REMEDIO WHERE idRemedio= " + result.insertId, function(e, r, f){
+      console.log(r[0]);
       return res.status(200).json(r[0]);
     })
   });
@@ -93,20 +106,7 @@ app.post("/usuario/remedio/:id", (req, res, next) => {
   });
 });
 
-app.put("/usuario/remedio/:id", (req, res, next) => {
-  var remedio = req.body; // pega as informacoes da requisicao
-  var query = "INSERT INTO REMEDIO (nomeRemedio, horario) VALUES('" + remedio.nomeRemedio + "','" + remedio.horario + "')";
 
-  conex.query(query, function (error, result, fields){
-    conex.on('error', function(err){
-      console.log("ERRO NO MYSQL", err);
-    });
-    if(result && result.length)
-      res.end(JSON.stringify(result));
-    else
-      res.end(JSON.stringify('Erro ao inserir remedio'));
-  });
-});
 
 app.delete("/usuario/remedio/delete/:id", (req, res, next) => {
   var query = "DELETE FROM REMEDIO WHERE idRemedio = " + req.params.id;
