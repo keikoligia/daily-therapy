@@ -28,4 +28,7 @@ interface Service
     //medicamento
     @POST("/usuario/remedio")
     Call<Remedio> incluirMedicamento(@Body Remedio remedio);
+
+    @POST("/usuario/remedio/get")
+    Call<Remedio> mostrarRemedio(@Body Remedio remedio);
 }

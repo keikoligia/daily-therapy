@@ -37,7 +37,6 @@ public class Remedio implements Serializable
         this.fim = fim;
     }
 
-
     public String getNomeRemedio() {
         return nomeRemedio;
     }
