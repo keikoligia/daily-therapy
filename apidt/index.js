@@ -28,12 +28,9 @@ app.get("/usuarios", (req, res, next) => {
   }
 });
 
-//selecionar user pelo nome
-app.post("/usuario/login", (req, res, next) => {
-  var nomeUsuario = req.body;
-  console.log(nomeUsuario);
+app.get("/usuario/login/:nome", (req, res, next) => {
+  var nomeUsuario = req.params;
   var query = "SELECT * FROM usuario WHERE nome =" + "'" + nomeUsuario.nome  + "'";
-  console.log(query);
 
   conex.query(query, function (error, result, fields){
     conex.on('error', function(err){
@@ -69,7 +66,8 @@ app.post("/usuario", (req, res, next) => {
 app.post("/usuario/remedio", (req, res, next) => {
   var remedio = req.body; 
   //'INSERT INTO REMEDIO (nomeRemedio, DATE_FORMAT(horario, "%H:%i" ), frequencia, DATE_FORMAT(inicio, "%e/%c/%Y" ), DATE_FORMAT(fim, "%e/%c/%Y")) VALUES(' + remedio.nomeRemedio + "','" + remedio.horario + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "')"
-  var query = "INSERT INTO REMEDIO (nomeRemedio, horario, frequencia, inicio, fim) VALUES('"+ remedio.nomeRemedio + "','" + remedio.horario + "','" + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "')";
+  var query = "INSERT INTO REMEDIO (nomeRemedio, horario, frequencia, inicio, fim, nome) VALUES('"+ remedio.nomeRemedio + "','" + remedio.horario + "','" + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "','"+ remedio.nome + "')";
+  console.log(query)
   conex.query(query, function (error, result, fields){
     conex.on('error', function(err){
       console.log("ERRO NO MYSQL", err);
@@ -91,22 +89,6 @@ app.delete("/usuario/delete/:id", (req, res, next) => {
     return res.json(JSON.stringify(result));
   });
 });
-
-app.post("/usuario/remedio/:id", (req, res, next) => {
-  var query = "SELECT * FROM remedio WHERE nome LIKE '%" + req.params.id + "%'";
-
-  conex.query(query, function (error, result, fields){
-    conex.on('error', function(err){
-      console.log("DEU ERRO NO MYSQL", err);
-    });
-    if(result && result.length)
-      res.end(JSON.stringify(result));
-    else
-      res.end(JSON.stringify('Nenhum remedio p/ resgatar'));
-  });
-});
-
-
 
 app.delete("/usuario/remedio/delete/:id", (req, res, next) => {
   var query = "DELETE FROM REMEDIO WHERE idRemedio = " + req.params.id;

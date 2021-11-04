@@ -1,5 +1,13 @@
 package br.unicamp.dailytherapy;
 
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -17,6 +25,11 @@ public class Remedio implements Serializable
     @SerializedName("fim")
     private String fim;
 
+
+
+    @SerializedName("nomeUsuario")
+    private String nomeUsuario;
+
     public Remedio() { }
 
     public Remedio(Remedio modelo) throws Exception
@@ -26,17 +39,18 @@ public class Remedio implements Serializable
         this.horario = modelo.horario;
         this.inicio = modelo.inicio;
         this.fim = modelo.fim;
+        this.nomeUsuario = modelo.nomeUsuario;
     }
 
-    public Remedio(String nomeRemedio, String horario, char frequencia, String inicio, String fim)
+    public Remedio(String nomeRemedio, String horario, char frequencia, String inicio, String fim, String nomeUsuario)
     {
         this.nomeRemedio = nomeRemedio;
         this.horario = horario;
         this.frequencia = frequencia;
         this.inicio = inicio;
         this.fim = fim;
+        this.nomeUsuario = nomeUsuario;
     }
-
 
     public String getNomeRemedio() {
         return nomeRemedio;
@@ -77,5 +91,10 @@ public class Remedio implements Serializable
     public void setFim(String fim) {
         this.fim = fim;
     }
+
+    public String getNomeUsuario() { return nomeUsuario; }
+
+    public void setNomeUsuario(String nomeUsuario) { this.nomeUsuario = nomeUsuario; }
+
 
 }

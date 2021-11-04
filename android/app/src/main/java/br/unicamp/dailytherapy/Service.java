@@ -13,14 +13,8 @@ import retrofit2.http.Path;
 interface Service
 {
     //usuario
-    @GET("/usuarios")
-    Call<List<Usuario>> getUsuario();
-
-    @DELETE("/usuario/delete/{id}")
-    Call<Usuario> excluirUsuario(@Path("id") String id);
-
-    @POST("/usuario")
-    Call<Usuario> getUsuarioNome(@Body Usuario usuario);
+    @GET("/usuario/login/{nome}")
+    Call<Usuario> getUsuarioNome(@Path("nome") String nome);
 
     @POST("/usuario")
     Call<Usuario> incluirUsuario(@Body Usuario usuario);
@@ -28,4 +22,8 @@ interface Service
     //medicamento
     @POST("/usuario/remedio")
     Call<Remedio> incluirMedicamento(@Body Remedio remedio);
+
+    //resumo
+    @POST("/usuario/remedio")
+    Call<Remedio> gerarPdf(@Body Resumo resumo);
 }

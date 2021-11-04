@@ -2,6 +2,7 @@ package br.unicamp.dailytherapy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
     Button btnEntrar;
     Intent intent;
     private Session session;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +58,16 @@ public class Login extends AppCompatActivity {
             Usuario usuario = new Usuario();
             usuario.setSenha(edtSenha.getText().toString());
             usuario.setNome(edtUsuario.getText().toString());
+            //Toast.makeText(Login.this, usuario.getNome(), Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(this, Medicamento.class);
+            String str = edtUsuario.getText().toString();
+            i.putExtra("key", str);
+
+            Toast.makeText(Login.this, str,  Toast.LENGTH_SHORT).show();
 
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-            Call<Usuario> call = service.getUsuarioNome(usuario);
+            Call<Usuario> call = service.getUsuarioNome(nome);
             call.enqueue(new Callback<Usuario>() {
                 @Override
                 public void onResponse(Call<Usuario> call, Response<Usuario> response)
