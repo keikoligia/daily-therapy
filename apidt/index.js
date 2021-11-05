@@ -48,6 +48,28 @@ app.get("/usuario/login/:nome", (req, res, next) => {
   });
 });
 
+//selecionar remedio pelo nome
+app.post("/usuario/remedio/get", (req, res, next) => {
+  var nomeRemedio = req.body;
+  console.log(nomeRemedio);
+  var query = "SELECT * FROM remedio WHERE nomeRemedio =" + "'" + nomeRemedio.nomeRemedio  + "'";
+  console.log(query);
+
+  conex.query(query, function (error, result, fields){
+    conex.on('error', function(err){
+      console.log("DEU ERRO NO MYSQL", err);
+    });
+    if(result && result.length)
+    {
+      return res.status(200).json(result[0]);
+    }
+    else
+    {
+      return res.status(404).json({error: 'Remédio nao encontrado'});
+    }
+  });
+});
+
 app.post("/usuario", (req, res, next) => {
   var user = req.body; // pega as informacoes da requisicao
   var query = "INSERT INTO USUARIO (nome, contato, nomeContato, email, senha) VALUES('" + user.nome + "','" + user.contato + "','" + user.nomeContato + "','" + user.email + "','" + user.senha + "')";

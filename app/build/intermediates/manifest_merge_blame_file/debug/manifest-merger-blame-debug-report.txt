@@ -1,0 +1,81 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="br.unicamp.dailytherapy"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:5:5-36:19
+12        android:allowBackup="true"
+12-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.5.0] C:\Users\Maria Paula\.gradle\caches\transforms-3\e759884e8e1539e68246ec4d8729cc98\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+14        android:debuggable="true"
+15        android:extractNativeLibs="false"
+16        android:icon="@mipmap/ic_launcher"
+16-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:7:9-43
+17        android:label="@string/app_name"
+17-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:8:9-41
+18        android:roundIcon="@mipmap/ic_launcher_round"
+18-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:9:9-54
+19        android:supportsRtl="true"
+19-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:10:9-35
+20        android:testOnly="true"
+21        android:theme="@style/Theme.DailyTherapy" >
+21-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:11:9-50
+22        <activity
+22-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:12:9-14:39
+23            android:name="br.unicamp.dailytherapy.Inicio"
+23-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:13:13-35
+24            android:exported="true" />
+24-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:14:13-36
+25        <activity
+25-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:15:9-17:39
+26            android:name="br.unicamp.dailytherapy.Cadastro"
+26-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:16:13-37
+27            android:exported="true" />
+27-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:17:13-36
+28        <activity
+28-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:18:9-20:39
+29            android:name="br.unicamp.dailytherapy.Login"
+29-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:19:13-34
+30            android:exported="true" />
+30-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:20:13-36
+31        <activity
+31-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:21:9-23:39
+32            android:name="br.unicamp.dailytherapy.Medicamento"
+32-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:22:13-40
+33            android:exported="true" />
+33-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:23:13-36
+34        <activity
+34-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:24:9-26:39
+35            android:name="br.unicamp.dailytherapy.Chat"
+35-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:25:13-33
+36            android:exported="true" />
+36-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:26:13-36
+37        <activity
+37-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:27:9-35:20
+38            android:name="br.unicamp.dailytherapy.MainActivity"
+38-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:28:13-41
+39            android:exported="true" >
+39-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:29:13-36
+40            <intent-filter>
+40-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:30:13-34:29
+41                <action android:name="android.intent.action.MAIN" />
+41-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:31:17-69
+41-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:31:25-66
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:33:17-77
+43-->C:\Users\Maria Paula\Documents\GitHub\daily-therapy\app\src\main\AndroidManifest.xml:33:27-74
+44            </intent-filter>
+45        </activity>
+46    </application>
+47
+48</manifest>
