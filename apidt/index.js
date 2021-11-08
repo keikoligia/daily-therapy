@@ -89,6 +89,7 @@ app.post("/usuario/remedio", (req, res, next) => {
   var remedio = req.body; 
   //'INSERT INTO REMEDIO (nomeRemedio, DATE_FORMAT(horario, "%H:%i" ), frequencia, DATE_FORMAT(inicio, "%e/%c/%Y" ), DATE_FORMAT(fim, "%e/%c/%Y")) VALUES(' + remedio.nomeRemedio + "','" + remedio.horario + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "')"
   var query = "INSERT INTO REMEDIO (nomeRemedio, horario, frequencia, inicio, fim, nome) VALUES('"+ remedio.nomeRemedio + "','" + remedio.horario + "','" + remedio.frequencia + "','" + remedio.inicio + "','"+ remedio.fim + "','"+ remedio.nome + "')";
+  
   console.log(query)
   conex.query(query, function (error, result, fields){
     conex.on('error', function(err){

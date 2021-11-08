@@ -22,4 +22,13 @@ public class Session {
         String usename = prefs.getString("usename","");
         return usename;
     }
+
+    public void setKey(String key) {prefs.edit().putString("key", key).commit(); }
+
+    public String getKey()
+    {
+        String key = prefs.getString("key", "");
+        return key;
+    }
+
 }

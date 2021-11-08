@@ -23,7 +23,6 @@ public class Login extends AppCompatActivity {
     Button btnEntrar;
     Intent intent;
     private Session session;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +40,29 @@ public class Login extends AppCompatActivity {
                 String nome = edtUsuario.getText().toString();
                 String senha = edtSenha.getText().toString();
                 getUser(nome, senha);
+                sendName();
             }
         });
+    }
+
+    private void sendName()
+    {
+        if(edtUsuario.getText().toString() != "" && edtSenha.getText().toString() != "")
+        {
+
+        }
     }
 
     private void setUserSession(Usuario nome)
     {
         session = new Session(this); //in oncreate
         session.setUseName(nome.getNome());
+
+        session.setKey(edtUsuario.getText().toString());
+        Intent i = new Intent(Login.this, Medicamento.class);
+        String str = edtUsuario.getText().toString();
+        i.putExtra("key", str);
+        Toast.makeText(Login.this, str,  Toast.LENGTH_SHORT).show();
     }
 
     private void getUser(String nome, String senha)
@@ -59,12 +73,6 @@ public class Login extends AppCompatActivity {
             usuario.setSenha(edtSenha.getText().toString());
             usuario.setNome(edtUsuario.getText().toString());
             //Toast.makeText(Login.this, usuario.getNome(), Toast.LENGTH_LONG).show();
-
-            Intent i = new Intent(this, Medicamento.class);
-            String str = edtUsuario.getText().toString();
-            i.putExtra("key", str);
-
-            Toast.makeText(Login.this, str,  Toast.LENGTH_SHORT).show();
 
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             Call<Usuario> call = service.getUsuarioNome(nome);

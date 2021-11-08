@@ -38,21 +38,14 @@ public class Medicamento extends AppCompatActivity {
     RadioGroup rgbDias;
     RadioButton rbDiariamente, rbEspecifico, rbSemanal;
     private Session session;//global variable
+    private String nomeUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento);
-        createNotificationChannel();
-
-        /*
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            nomeUsuario = extras.getString("key");
-            Toast.makeText(Medicamento.this, "resultado: "+ nomeUsuario, Toast.LENGTH_SHORT).show();
-
-        }*/
+        //createNotificationChannel();
 
         edtNomeMedicamento = (EditText) findViewById(R.id.edtNomeMedicamento);
         edtInicioDia = (EditText) findViewById(R.id.edtInicioDia);
@@ -70,41 +63,57 @@ public class Medicamento extends AppCompatActivity {
         rbEspecifico = (RadioButton) findViewById(R.id.rbEspecifico);
         rbSemanal = (RadioButton) findViewById(R.id.rbSemanal);
 
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        btnSalvar.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //nomeUsuario = session.getKey();
+                //Toast.makeText(Medicamento.this, "resultado: " + nomeUsuario, Toast.LENGTH_SHORT).show();
+
+                double hora       = Byte.parseByte(edtHorario.getText().toString());
+                double minuto     = Byte.parseByte(edtMinuto.getText().toString());
+                double horario = hora + (minuto/60);
+
                 inserirMedicamento();
-
-                Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(Medicamento.this, 0, intent, 0);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-                long hora       = Byte.parseByte(edtHorario.getText().toString());
-                long minuto     = Byte.parseByte(edtMinuto.getText().toString());
-                long horario = hora + (minuto/60);
-
-                long clickHora = LocalDateTime.now().getHour() - 3;
-                long clickMinuto = LocalDateTime.now().getMinute();
-                long horarioClick = clickHora + (clickMinuto/60);
-                long trigger = horarioClick - horario;
-
-                if((horarioClick - horario) > 0)
-                {
-                    //Toast.makeText(Medicamento.this, "O tempo passou, seu alerme tocara daqui: " + (24-trigger) + " horas.", Toast.LENGTH_SHORT).show();
-                    trigger = 24-trigger;
-                }
-                    //System.out.print("O tempo passou, seu alerme tocara daqui: " + (24-trigger) + " horas.");
-                if((horarioClick - horario) < 0)
-                {
-                    //Toast.makeText(Medicamento.this, "Seu alerme tocara daqui: " + (trigger*60)*-1 + " minutos.", Toast.LENGTH_SHORT).show();
-                }
-                //Toast.makeText(Medicamento.this, "resultado: "+trigger*3600000, Toast.LENGTH_SHORT).show();
-
-                alarmManager.set(AlarmManager.RTC_WAKEUP,
-                        trigger*3600000,
-                        pendingIntent);
+                //ReminderBroadcast.setAlarm(context, hour, minute);
             }
         });
+    }
+/*
+    private void notification()
+    {
+        Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(Medicamento.this, 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        double clickHora = LocalDateTime.now().getHour() - 3;
+        double clickMinuto = LocalDateTime.now().getMinute();
+        double horarioClick = clickHora + (clickMinuto/60);
+        double trigger = horarioClick - horario;
+
+        if(trigger > 0)
+        {
+            Toast.makeText(Medicamento.this, "O tempo passou, seu alerme tocara daqui: " + (24-trigger) + " horas.", Toast.LENGTH_SHORT).show();
+            trigger = 24-trigger;
+        }
+
+        if(trigger < 0)
+        {
+            Toast.makeText(Medicamento.this, "Seu alerme tocara daqui: " + (trigger*60)*-1 + " minutos.", Toast.LENGTH_SHORT).show();
+            trigger *= -1;
+        }
+
+        if(trigger == 0)
+        {
+            trigger = trigger * 3600000;
+        }
+
+        Toast.makeText(Medicamento.this, "resultado: "+ (long)trigger*3600000 + "trigger: " + trigger, Toast.LENGTH_SHORT).show();
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
+                (long)trigger*3600000,
+                pendingIntent);
     }
 
     private void createNotificationChannel() {
@@ -122,14 +131,11 @@ public class Medicamento extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
-
+*/
     private void inserirMedicamento()
     {
         try
         {
-            String nomeUsuario = getIntent().getStringExtra("key");
-            Toast.makeText(Medicamento.this, "resultado: "+ nomeUsuario, Toast.LENGTH_SHORT).show();
-
             String nomeRemedio   = edtNomeMedicamento.getText().toString();
             String hora       = edtHorario.getText().toString();
             String minuto     = edtMinuto.getText().toString();
@@ -152,8 +158,10 @@ public class Medicamento extends AppCompatActivity {
             else if(rbDiariamente.isChecked())
                 frequencia = 'd';
 
-            Remedio remedio = new Remedio(nomeRemedio, horario, frequencia, inicio, fim, nomeUsuario);
-            Toast.makeText(Medicamento.this, nomeUsuario + " " + nomeRemedio + " " + horario + " " + frequencia + " " + inicio + " " + " "+ fim, Toast.LENGTH_SHORT).show();
+            Session session = new Session(getApplicationContext());
+            String userName = session.getKey();
+            Remedio remedio = new Remedio(nomeRemedio, horario, frequencia, inicio, fim, userName);
+            Toast.makeText(Medicamento.this, userName + " " + nomeRemedio + " " + horario + " " + frequencia + " " + inicio + " " + " "+ fim, Toast.LENGTH_SHORT).show();
 
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             Call<Remedio> call = service.incluirMedicamento(remedio);

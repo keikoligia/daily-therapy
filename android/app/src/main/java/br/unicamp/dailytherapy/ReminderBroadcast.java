@@ -1,38 +1,89 @@
 package br.unicamp.dailytherapy;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.util.Calendar;
+
 public class ReminderBroadcast extends BroadcastReceiver
 {
-    private String nr;
+    private static String HOUR = "hour";
+    private static String MINUTE = "minute";
 
-    public String getNomeRemedio(String nome)
-    {
-        this.nr = nome;
-        return nome;
+
+    public static void setAlarm(Context context, int hour, int minute){
+        SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
+        preferences.edit()
+                .putInt(HOUR, hour)
+                .putInt(MINUTE, minute)
+                .apply();
+        setAlarm(context);
     }
-
-    int icone = android.R.drawable.ic_dialog_info;
-    String titulo = "Ingerir " + this.nr;
-    String texto = "Olá! Está na hora de você ingerir " + this.nr + "!";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyLemubit");
 
-        builder.setSmallIcon(icone);
-        builder.setContentTitle(titulo);
-        builder.setContentText(texto);
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+            setAlarm(context);
+            Toast.makeText(context, "Alarm set", Toast.LENGTH_LONG).show();
+        }
+    }
 
-        NotificationManagerCompat notificationManagerCompat =
-                NotificationManagerCompat.from(context);
+    private static void setAlarm(Context context) {
 
-        notificationManagerCompat.notify(200, builder.build());
+        int hour = getHour(context);
+        int minute = getMinute(context);
+
+        if(hour == -1 || minute == -1){
+            //nenhum horário definido
+            return;
+        }
+
+        // Cria um Calendar para o horário estipulado
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
+        //Se já passou
+        if(isDateBeforeNow(calendar)){
+            //adiciona um dia
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        //PendingIntent para lançar o serviço
+        Intent serviceIntent = new Intent(context, BootService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, serviceIntent, 0);
+
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        //Cancela um possível alarme existente
+        alarmManager.cancel(pendingIntent);
+
+        //Alarme que se repete todos os dias a uma determinada hora
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent);
+    }
+
+    private static int getHour(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt(HOUR, -1);
+    }
+    private static int getMinute(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt(MINUTE, -1);
+    }
+
+    private static boolean isDateBeforeNow(Calendar calendar){
+        return calendar.getTimeInMillis() <= System.currentTimeMillis();
     }
 }

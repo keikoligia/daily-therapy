@@ -24,11 +24,8 @@ public class Remedio implements Serializable
     private String inicio;
     @SerializedName("fim")
     private String fim;
-
-
-
-    @SerializedName("nomeUsuario")
-    private String nomeUsuario;
+    @SerializedName("nome")
+    private String nome;
 
     public Remedio() { }
 
@@ -39,17 +36,17 @@ public class Remedio implements Serializable
         this.horario = modelo.horario;
         this.inicio = modelo.inicio;
         this.fim = modelo.fim;
-        this.nomeUsuario = modelo.nomeUsuario;
+        this.nome = modelo.nome;
     }
 
-    public Remedio(String nomeRemedio, String horario, char frequencia, String inicio, String fim, String nomeUsuario)
+    public Remedio(String nomeRemedio, String horario, char frequencia, String inicio, String fim, String nome)
     {
         this.nomeRemedio = nomeRemedio;
         this.horario = horario;
         this.frequencia = frequencia;
         this.inicio = inicio;
         this.fim = fim;
-        this.nomeUsuario = nomeUsuario;
+        this.nome = nome;
     }
 
     public String getNomeRemedio() {
@@ -92,9 +89,9 @@ public class Remedio implements Serializable
         this.fim = fim;
     }
 
-    public String getNomeUsuario() { return nomeUsuario; }
+    public String getNomeUsuario() { return nome; }
 
-    public void setNomeUsuario(String nomeUsuario) { this.nomeUsuario = nomeUsuario; }
+    public void setNomeUsuario(String nomeUsuario) { this.nome = nomeUsuario; }
 
 
 }
