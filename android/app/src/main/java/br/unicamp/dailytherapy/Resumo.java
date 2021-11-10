@@ -3,6 +3,8 @@ package br.unicamp.dailytherapy;
 import com.google.gson.annotations.SerializedName;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+
 public class Resumo extends AppCompatActivity {
 
     @SerializedName("conteudoPdf")
@@ -24,6 +26,20 @@ public class Resumo extends AppCompatActivity {
 
     public void setIdRemedio(String idRemedio) { this.idRemedio = idRemedio; }
 
+    public void gerarPdf() {
+
+        // cria um documento .pdf
+        PdfDocument document = new PdfDocument();
+
+        document.writeText("Resumo do Tratamento", 150, 50);
+        document.writeText(getConteudoPdf());
+
+        // write the document content
+        document.writeTo(getOutputStream());
+
+        document.save("resumo.pdf");
+        document.close();
+    }
  /*
     private void mostrarRemedio() {
         try
