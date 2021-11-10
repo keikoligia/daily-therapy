@@ -24,6 +24,7 @@ import com.google.android.libraries.places.api.model.LocalTime;
 import com.google.gson.Gson;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import br.unicamp.dailytherapy.TratamentoErros.TrataErro;
 import retrofit2.Call;
@@ -39,6 +40,7 @@ public class Medicamento extends AppCompatActivity {
     RadioButton rbDiariamente, rbEspecifico, rbSemanal;
     private Session session;//global variable
     private String nomeUsuario;
+    ReminderBroadcast rb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -63,75 +65,18 @@ public class Medicamento extends AppCompatActivity {
         rbEspecifico = (RadioButton) findViewById(R.id.rbEspecifico);
         rbSemanal = (RadioButton) findViewById(R.id.rbSemanal);
 
+        rb = new ReminderBroadcast();
+
         btnSalvar.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //nomeUsuario = session.getKey();
-                //Toast.makeText(Medicamento.this, "resultado: " + nomeUsuario, Toast.LENGTH_SHORT).show();
-
-                double hora       = Byte.parseByte(edtHorario.getText().toString());
-                double minuto     = Byte.parseByte(edtMinuto.getText().toString());
-                double horario = hora + (minuto/60);
-
                 inserirMedicamento();
-                //ReminderBroadcast.setAlarm(context, hour, minute);
             }
         });
     }
-/*
-    private void notification()
-    {
-        Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(Medicamento.this, 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        double clickHora = LocalDateTime.now().getHour() - 3;
-        double clickMinuto = LocalDateTime.now().getMinute();
-        double horarioClick = clickHora + (clickMinuto/60);
-        double trigger = horarioClick - horario;
-
-        if(trigger > 0)
-        {
-            Toast.makeText(Medicamento.this, "O tempo passou, seu alerme tocara daqui: " + (24-trigger) + " horas.", Toast.LENGTH_SHORT).show();
-            trigger = 24-trigger;
-        }
-
-        if(trigger < 0)
-        {
-            Toast.makeText(Medicamento.this, "Seu alerme tocara daqui: " + (trigger*60)*-1 + " minutos.", Toast.LENGTH_SHORT).show();
-            trigger *= -1;
-        }
-
-        if(trigger == 0)
-        {
-            trigger = trigger * 3600000;
-        }
-
-        Toast.makeText(Medicamento.this, "resultado: "+ (long)trigger*3600000 + "trigger: " + trigger, Toast.LENGTH_SHORT).show();
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP,
-                (long)trigger*3600000,
-                pendingIntent);
-    }
-
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "LemubitReminderChannel";
-            String description = "Channel for Lemubit Reminder";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("notifyLemubit", name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-*/
     private void inserirMedicamento()
     {
         try
@@ -158,6 +103,13 @@ public class Medicamento extends AppCompatActivity {
             else if(rbDiariamente.isChecked())
                 frequencia = 'd';
 
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hora));
+            calendar.set(Calendar.MINUTE, Integer.parseInt(minuto));
+
+            Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
+            rb.setRepeatingAlarm(this, calendar);
+            rb.onReceive(this, intent);
             Session session = new Session(getApplicationContext());
             String userName = session.getKey();
             Remedio remedio = new Remedio(nomeRemedio, horario, frequencia, inicio, fim, userName);

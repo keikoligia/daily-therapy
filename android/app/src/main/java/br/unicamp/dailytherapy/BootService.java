@@ -13,7 +13,7 @@ public class BootService extends IntentService {
     private PowerManager.WakeLock wakeLock;
 
     public BootService() {
-        super("name");
+        super("BootService");
     }
 
     @SuppressLint("InvalidWakeLockTag")

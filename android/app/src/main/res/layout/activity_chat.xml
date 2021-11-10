@@ -18,12 +18,14 @@
         android:textSize="40dp" />
 
     <RadioGroup
-        android:layout_width="wrap_content"
+        android:id="@+id/rgbMensagem"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp">
 
         <RadioButton
+            android:id="@+id/rbRemedio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -32,6 +34,7 @@
             android:textSize="25dp" />
 
         <RadioButton
+            android:id="@+id/rbIngerir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -40,6 +43,7 @@
             android:textSize="25dp" />
 
         <RadioButton
+            android:id="@+id/rbHorario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ralewaybold"
@@ -47,31 +51,31 @@
             android:textSize="25dp" />
 
         <RadioButton
+            android:id="@+id/rbPersonalizado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center">
+            android:textAlignment="center" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:gravity="right"
-                android:text="Digitar....                                   "
-                android:textSize="25dp" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewaybold"
+            android:gravity="right"
+            android:text="Digitar....                                   "
+            android:textSize="25dp" />
 
-        </RadioButton>
     </RadioGroup>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginRight="40dp"
-        android:height="70dp"
+        android:id="@+id/btnEnviar"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/azul"
         android:fontFamily="@font/ralewaybold"
-        android:text="Enviar"
-        android:textSize="25dp" />
+        android:text="ENVIAR"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 </LinearLayout>
