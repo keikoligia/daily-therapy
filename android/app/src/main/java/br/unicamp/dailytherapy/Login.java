@@ -40,25 +40,20 @@ public class Login extends AppCompatActivity {
                 String nome = edtUsuario.getText().toString();
                 String senha = edtSenha.getText().toString();
                 getUser(nome, senha);
-                sendName();
             }
         });
     }
 
-    private void sendName()
+    private void setUserSession(Usuario user)
     {
-        if(edtUsuario.getText().toString() != "" && edtSenha.getText().toString() != "")
-        {
+        session = new Session(Login.this); //in oncreate
 
-        }
-    }
+        session.setUseName(user.getNome());
+        session.setEmailCtt(user.getContato());
+        session.setCttName(user.getNomeCtt());
+        session.setEmail(user.getEmail());
+        session.setSenha(user.getSenha());
 
-    private void setUserSession(Usuario nome)
-    {
-        session = new Session(this); //in oncreate
-        session.setUseName(nome.getNome());
-
-        session.setKey(edtUsuario.getText().toString());
         Intent i = new Intent(Login.this, Medicamento.class);
         String str = edtUsuario.getText().toString();
         i.putExtra("key", str);

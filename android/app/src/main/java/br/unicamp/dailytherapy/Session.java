@@ -19,16 +19,44 @@ public class Session {
 
     public String getusename()
     {
-        String usename = prefs.getString("usename","");
+        String usename = prefs.getString("nome","");
         return usename;
     }
 
-    public void setKey(String key) {prefs.edit().putString("key", key).commit(); }
+    public void setCttName(String nomeCtt) {
+        prefs.edit().putString("nomeCtt", nomeCtt).commit();
+    }
 
-    public String getKey()
+    public String getCttNome()
     {
-        String key = prefs.getString("key", "");
-        return key;
+        String nomeCtt = prefs.getString("nomeCtt","");
+        return nomeCtt;
+    }
+
+    public void setSenha(String nomeCtt) {
+        prefs.edit().putString("senha", nomeCtt).commit();
+    }
+
+    public String getSenha()
+    {
+        String senha = prefs.getString("senha","");
+        return senha;
+    }
+
+    public void setEmailCtt(String emailCtt) {prefs.edit().putString("emailCtt", emailCtt).commit(); }
+
+    public String getEmailCtt()
+    {
+        String emailCtt = prefs.getString("emailCtt", "");
+        return emailCtt;
+    }
+
+    public void setEmail(String email) {prefs.edit().putString("email", email).commit(); }
+
+    public String getEmail()
+    {
+        String email = prefs.getString("email", "");
+        return email;
     }
 
 }

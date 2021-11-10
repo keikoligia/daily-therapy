@@ -8,19 +8,20 @@
     tools:context=".Chat">
 
     <TextView
-        android:layout_width="425dp"
+        android:id="@+id/tvContato"
+        android:layout_width="440dp"
         android:layout_height="59dp"
         android:background="@color/azul"
         android:backgroundTint="@color/azul"
         android:fontFamily="@font/ralewaybold"
-        android:text="  Ligia"
+        android:text="  "
         android:textColor="@color/black"
-        android:textSize="40dp" />
+        android:textSize="35dp" />
 
     <RadioGroup
         android:id="@+id/rgbMensagem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="316dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp">
 
@@ -57,12 +58,14 @@
             android:textAlignment="center" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/edtMensagem"
+            android:layout_width="308dp"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/rbPersonalizado"
             android:fontFamily="@font/ralewaybold"
-            android:gravity="right"
-            android:text="Digitar....                                   "
-            android:textSize="25dp" />
+            android:gravity="left"
+            android:hint="Digitar....                                   "
+            android:textSize="17dp" />
 
     </RadioGroup>
 

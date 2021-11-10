@@ -11,8 +11,10 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -24,7 +26,7 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import java.util.Properties;
-
+import br.unicamp.dailytherapy.*;
 import javax.mail.Authenticator;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -38,6 +40,10 @@ public class Chat extends AppCompatActivity {
     RadioButton rbRemedio, rbIngerir, rbHorario, rbPersonalizado;
     Button btnEnviar;
     String sEmail, sPassword;
+    String nomeCtt, emailCtt;
+    TextView tvContato;
+    EditText edtMensagem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,23 +52,23 @@ public class Chat extends AppCompatActivity {
 
         rgbMensagem = (RadioGroup) findViewById(R.id.rgbMensagem);
         rbRemedio = (RadioButton) findViewById(R.id.rbRemedio);
-        rbIngerir = (RadioButton) findViewById(R.id.rbHorario);
+        rbIngerir = (RadioButton) findViewById(R.id.rbIngerir);
         rbPersonalizado = (RadioButton) findViewById(R.id.rbPersonalizado);
-
+        tvContato = (TextView) findViewById(R.id.tvContato);
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
+        edtMensagem = (EditText) findViewById(R.id.edtMensagem);
+        
+        br.unicamp.dailytherapy.Session session = new br.unicamp.dailytherapy.Session(Chat.this);
 
-        String mensagem = "";
-        if(rbRemedio.isChecked())
-            mensagem = "Necessito de ajuda com os medicamentos";
-        else if(rbIngerir.isChecked())
-            mensagem = "Ingeri o medicamento errado";
-        else if(rbPersonalizado.isChecked())
-            mensagem = "Esqueci o horário do medicamento";
+        sEmail = session.getEmail();;
+        sPassword = session.getSenha();
+        nomeCtt = session.getCttNome();
+        emailCtt = session.getEmailCtt();
 
-        String finalMensagem = mensagem;
+        tvContato.setText(nomeCtt);
 
-        sEmail = "maria.piups@gmail.com";
-        sPassword = "pips12345";
+        Toast.makeText(Chat.this, sEmail + " " + sPassword
+                + " " + emailCtt + " " + nomeCtt, Toast.LENGTH_LONG).show();
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +92,10 @@ public class Chat extends AppCompatActivity {
                     Message message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(sEmail));
                     message.setRecipients(Message.RecipientType.TO,
-                            InternetAddress.parse("ligia.kcarvalho@gmail.com"));
-                    message.setSubject("Ola estou enviando um email");
-                    message.setText("Corpo do email muito q bom dia");
+                            InternetAddress.parse(emailCtt));
+                    message.setSubject("Seu paciente precisa de ajuda!");
+                    message.setText("Olá, " + nomeCtt + "\n Seu paciente precisa de ajuda, esta é a mensagem dele: " + getMensagem());
+                    Toast.makeText(Chat.this, "mensagem: "+getMensagem(), Toast.LENGTH_LONG).show();
 
                     new SendMail().execute(message);
                 }
@@ -99,7 +106,21 @@ public class Chat extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private String getMensagem()
+    {
+        String mensagem = "";
+        if(rbRemedio.isChecked())
+            mensagem = "Necessito de ajuda com os medicamentos";
+        else if(rbIngerir.isChecked())
+            mensagem = "Ingeri o medicamento errado";
+        else if(rbHorario.isChecked())
+            mensagem = "Esqueci o horário do medicamento";
+        else if(rbPersonalizado.isChecked())
+            mensagem = edtMensagem.getText().toString();
+
+        return mensagem;
     }
 
     private class SendMail extends AsyncTask<Message, String, String>
@@ -120,12 +141,12 @@ public class Chat extends AppCompatActivity {
             try
             {
                 Transport.send(messages[0]);
-                return "Sucess";
+                return "Email enviado com sucesso!";
             }
             catch (MessagingException e)
             {
                 e.printStackTrace();
-                return "Error";
+                return "Email não enviado.";
             }
         }
         @Override
@@ -146,9 +167,9 @@ public class Chat extends AppCompatActivity {
                 });
                 builder.show();
             } else {
-                Toast.makeText(getApplicationContext(),
+                /*Toast.makeText(getApplicationContext(),
                         "Alguma coisa deu errado",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
         }
     }

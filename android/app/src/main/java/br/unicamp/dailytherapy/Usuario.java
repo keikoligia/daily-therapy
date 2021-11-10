@@ -12,8 +12,8 @@ public class Usuario implements Serializable
     private String nome;
     @SerializedName("contato")
     private String contato;
-    @SerializedName("nomeCtt")
-    private String nomeCtt;
+    @SerializedName("nomeContato")
+    private String nomeContato;
     @SerializedName("email")
     private String email;
     @SerializedName("senha")
@@ -24,16 +24,16 @@ public class Usuario implements Serializable
     public Usuario(Usuario modelo) throws Exception{
         this.nome = modelo.nome;
         this.contato = modelo.contato;
-        this.nomeCtt = modelo.nomeCtt;
+        this.nomeContato = modelo.nomeContato;
         this.email = modelo.email;
         this.senha = modelo.senha;
     }
 
-    public Usuario(String nome, String contato, String nomeCtt, String email, String senha)
+    public Usuario(String nome, String contato, String nomeContato, String email, String senha)
     {
         this.nome = nome;
         this.contato = contato;
-        this.nomeCtt = nomeCtt;
+        this.nomeContato = nomeContato;
         this.email = email;
         this.senha = senha;
     }
@@ -53,4 +53,8 @@ public class Usuario implements Serializable
     public String getSenha() { return senha; }
 
     public void setSenha(String senha) { this.senha = senha; }
+
+    public String getNomeCtt() { return nomeContato; }
+
+    public void setNomeCtt(String nomeCtt) { this.nomeContato = nomeCtt; }
 }

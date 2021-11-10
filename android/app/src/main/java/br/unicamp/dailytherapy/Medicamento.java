@@ -110,8 +110,9 @@ public class Medicamento extends AppCompatActivity {
             Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
             rb.setRepeatingAlarm(this, calendar);
             rb.onReceive(this, intent);
+
             Session session = new Session(getApplicationContext());
-            String userName = session.getKey();
+            String userName = session.getusename();
             Remedio remedio = new Remedio(nomeRemedio, horario, frequencia, inicio, fim, userName);
             Toast.makeText(Medicamento.this, userName + " " + nomeRemedio + " " + horario + " " + frequencia + " " + inicio + " " + " "+ fim, Toast.LENGTH_SHORT).show();
 
@@ -126,9 +127,6 @@ public class Medicamento extends AppCompatActivity {
                     {
                         Remedio remed = response.body();
                         Toast.makeText(Medicamento.this, "REMEDIO INSERIDO!!!", Toast.LENGTH_SHORT).show();
-                        /*Intent intent = new Intent(Cadastro.this, Login.class);
-                        startActivity(intent);
-                        finish();*/
                     }
                     else
                     {
@@ -136,7 +134,6 @@ public class Medicamento extends AppCompatActivity {
                         {
                             Gson gson = new Gson();
                             TrataErro erro = gson.fromJson(response.errorBody().string(), TrataErro.class);
-
                             Toast.makeText(Medicamento.this, "toast1: "+erro.getError(), Toast.LENGTH_SHORT).show();
                         }
                         catch (Exception err)
