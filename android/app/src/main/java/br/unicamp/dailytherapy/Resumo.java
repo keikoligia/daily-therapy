@@ -1,11 +1,23 @@
 package br.unicamp.dailytherapy;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Toast;
+
 import com.google.gson.annotations.SerializedName;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-
-public class Resumo extends AppCompatActivity {
+public class Resumo extends AppCompatActivity
+{
 
     @SerializedName("conteudoPdf")
     private String conteduoPdf;
@@ -26,68 +38,33 @@ public class Resumo extends AppCompatActivity {
 
     public void setIdRemedio(String idRemedio) { this.idRemedio = idRemedio; }
 
-    public void gerarPdf() {
-
-        // cria um documento .pdf
+    public void gerarPdf()
+    {
         PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo detalhes =
+                new PdfDocument.PageInfo.Builder(500, 600, 1).create();
 
-        document.writeText("Resumo do Tratamento", 150, 50);
-        document.writeText(getConteudoPdf());
+        PdfDocument.Page newPage = document.startPage(detalhes);
+        Canvas canvas = newPage.getCanvas();
+        Paint corTexto = new Paint();
+        corTexto.setColor(Color.BLACK);
 
-        // write the document content
-        document.writeTo(getOutputStream());
+        canvas.drawText("Resumo do tratamento", 105, 100, corTexto);
 
-        document.save("resumo.pdf");
+        document.finishPage(newPage);
+
+        File filePath = new File(Environment.getExternalStorageDirectory() + "/Download", "resumo.pdf");
+
+        try {
+            document.writeTo(new FileOutputStream(filePath));
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro 1");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Erro 2");
+            e.printStackTrace();
+        }
+
         document.close();
     }
- /*
-    private void mostrarRemedio() {
-        try
-        {
-            Remedio remedio = new Remedio(nomeRemedio, horario, frequencia, inicio, fim);
-
-            Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
-            Call<Remedio> call = service.mostrarRemedio(remedio);
-
-            call.enqueue(new Callback<Remedio>() {
-                @Override
-                public void onResponse(Call<Remedio> call, Response<Remedio> response) {
-                    if(response.isSuccessful())
-                    {
-                        Remedio remed = response.body();
-                        Toast.makeText(Resumo.this, "REMEDIO" + remedio.getNomeRemedio() +
-                                " " + remedio.getFrequencia() +
-                                " " + remedio.getHorario() +
-                                " " + remedio.getInicio(),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        try
-                        {
-                            Gson gson = new Gson();
-                            TrataErro erro = gson.fromJson(response.errorBody().string(), TrataErro.class);
-
-                            Toast.makeText(Resumo.this, "toast1: "+erro.getError(), Toast.LENGTH_SHORT).show();
-                        }
-                        catch (Exception err)
-                        {
-                            Toast.makeText(Resumo.this, "toast2: "+err.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Remedio> call, Throwable t) {
-                    Toast.makeText(Resumo.this, "Erro ao fazer cadastro", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Resumo.this, "toast3: "+t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        catch (Exception err)
-        {
-            Toast.makeText(Resumo.this, "toast4: "+err.getMessage().toString(), Toast.LENGTH_SHORT).show();
-        }
-    }
-*/
 }

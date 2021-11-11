@@ -43,8 +43,7 @@
         android:backgroundTint="@color/azul"
         android:textColor="@color/black"
         android:fontFamily="@font/ralewaybold"
-        android:height="70dp"
-        />
+        android:height="70dp"/>
 
     <Button
         android:id="@+id/btnMensagem"
