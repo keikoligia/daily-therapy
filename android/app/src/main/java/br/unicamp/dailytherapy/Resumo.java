@@ -1,70 +1,141 @@
 package br.unicamp.dailytherapy;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;
-import android.os.Environment;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.annotations.SerializedName;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Resumo extends AppCompatActivity
 {
+    TextView tvNomePaciente, tvNomeAcompanhante;
+    GridView gvRemedios;
+    private Session session;
+    private List<Remedio> remedioList;
+    private ResumoAdapter adapter;
 
-    @SerializedName("conteudoPdf")
-    private String conteduoPdf;
-    @SerializedName("idUsuario")
-    private String idUsuario;
-    @SerializedName("idRemedio")
-    private String idRemedio;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_resumo);
 
-    public String getConteduoPdf() { return conteduoPdf; }
+        tvNomeAcompanhante = (TextView) findViewById(R.id.tvNomeAcompanhante);
+        tvNomePaciente = (TextView) findViewById(R.id.tvNomePaciente);
+        gvRemedios = (GridView) findViewById(R.id.gvRemedios);
 
-    public void setConteduoPdf(String conteduoPdf) { this.conteduoPdf = conteduoPdf; }
+        session = new Session(Resumo.this);
+        String nomePaciente = session.getusename();
+        String nomeContato = session.getCttNome();
 
-    public String getIdUsuario() { return idUsuario; }
+        Toast.makeText(Resumo.this, nomePaciente + " " + nomeContato, Toast.LENGTH_LONG).show();
 
-    public void setIdUsuario(String idUsuario) { this.idUsuario = idUsuario; }
+        tvNomePaciente.setText(nomePaciente);
+        tvNomeAcompanhante.setText(nomeContato);
 
-    public String getIdRemedio() { return idRemedio; }
+            Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
 
-    public void setIdRemedio(String idRemedio) { this.idRemedio = idRemedio; }
+            Call<List<Remedio>> call = service.mostrarRemedio(nomePaciente);
+            call.enqueue(new Callback<List<Remedio>>() {
+                @Override
+                public void onResponse(Call<List<Remedio>> call, Response<List<Remedio>> response)
+                {
+                    if(response.isSuccessful())
+                    {
+                        populateGridView(response.body());
+                    }
+                    else
+                    {
+                        try
+                        {
+                            JSONObject jObjError = new JSONObject(response.errorBody().string());
+                            String erro = jObjError.getJSONObject("error").getString("message");
+                            Toast.makeText(Resumo.this, erro, Toast.LENGTH_LONG).show();
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(Resumo.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Remedio>> call, Throwable t)
+                {
+                    String messageProblem = t.getMessage().toString();
+                    Toast.makeText(Resumo.this, messageProblem, Toast.LENGTH_LONG).show();
+                    Toast.makeText(Resumo.this, "Erro ao mostrar remédios", Toast.LENGTH_LONG).show();
+                }
+            });
 
-    public void gerarPdf()
+    }
+
+    private void populateGridView(List<Remedio> listaDog){
+        gvRemedios = (GridView) findViewById(R.id.gvRemedios);
+        adapter = new ResumoAdapter(listaDog,Resumo.this);
+        gvRemedios.setAdapter(adapter);
+    }
+
+    private void getRemedios()
     {
-        PdfDocument document = new PdfDocument();
-        PdfDocument.PageInfo detalhes =
-                new PdfDocument.PageInfo.Builder(500, 600, 1).create();
+        try
+        {
+            Usuario usuario = new Usuario();
+            Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
 
-        PdfDocument.Page newPage = document.startPage(detalhes);
-        Canvas canvas = newPage.getCanvas();
-        Paint corTexto = new Paint();
-        corTexto.setColor(Color.BLACK);
-
-        canvas.drawText("Resumo do tratamento", 105, 100, corTexto);
-
-        document.finishPage(newPage);
-
-        File filePath = new File(Environment.getExternalStorageDirectory() + "/Download", "resumo.pdf");
-
-        try {
-            document.writeTo(new FileOutputStream(filePath));
-        } catch (FileNotFoundException e) {
-            System.out.println("Erro 1");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Erro 2");
-            e.printStackTrace();
+            Call<List<Remedio>> call = service.mostrarRemedio(session.getusename());
+            call.enqueue(new Callback<List<Remedio>>() {
+                @Override
+                public void onResponse(Call<List<Remedio>> call, Response<List<Remedio>> response)
+                {
+                    if(response.isSuccessful())
+                    {
+                        remedioList = response.body();
+                        adapter = new ResumoAdapter(remedioList, Resumo.this);
+                        gvRemedios.setAdapter(adapter);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            JSONObject jObjError = new JSONObject(response.errorBody().string());
+                            String erro = jObjError.getJSONObject("error").getString("message");
+                            Toast.makeText(Resumo.this, erro, Toast.LENGTH_LONG).show();
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(Resumo.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Remedio>> call, Throwable t)
+                {
+                    String messageProblem = t.getMessage().toString();
+                    Toast.makeText(Resumo.this, messageProblem, Toast.LENGTH_LONG).show();
+                    Toast.makeText(Resumo.this, "Erro ao mostrar remédios", Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
-        document.close();
+        catch(Exception erro)
+        {
+            System.err.println(erro);
+            erro.printStackTrace();
+        }
     }
+
 }

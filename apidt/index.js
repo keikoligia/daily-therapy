@@ -43,16 +43,14 @@ app.get("/usuario/login/:nome", (req, res, next) => {
     else
     {
       return res.status(404).json({error: 'Usuario nao encontrado'});
-
     }
   });
 });
 
 //selecionar remedio pelo nome
-app.post("/usuario/remedio/get", (req, res, next) => {
-  var nomeRemedio = req.body;
-  console.log(nomeRemedio);
-  var query = "SELECT * FROM remedio WHERE nomeRemedio =" + "'" + nomeRemedio.nomeRemedio  + "'";
+app.get("/usuario/remedio/:nome", (req, res, next) => {
+  var nomeUsuario = req.params;
+  var query = "SELECT nomeRemedio, inicio, fim, nome FROM remedio WHERE nome =" + "'" + nomeUsuario.nome  + "'";
   console.log(query);
 
   conex.query(query, function (error, result, fields){
@@ -61,7 +59,7 @@ app.post("/usuario/remedio/get", (req, res, next) => {
     });
     if(result && result.length)
     {
-      return res.status(200).json(result[0]);
+      return res.status(200).json(result);
     }
     else
     {
