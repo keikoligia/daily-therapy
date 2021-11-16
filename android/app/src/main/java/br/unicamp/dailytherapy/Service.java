@@ -23,8 +23,8 @@ interface Service
 
     //resumo
     @POST("/usuario/remedio")
-    Call<Remedio> gerarPdf(@Body Resumo resumo);
+    Call<Remedio> gerarPdf(@Body DadosTratamento resumo);
 
-    @POST("/usuario/remedio/get")
-    Call<Remedio> mostrarRemedio(@Body Remedio remedio);
+    @GET("/usuario/remedio/{nome}")
+    Call<List<Remedio>> mostrarRemedio(@Path("nome") String nome);
 }

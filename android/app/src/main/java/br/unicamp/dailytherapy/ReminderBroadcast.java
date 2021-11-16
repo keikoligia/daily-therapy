@@ -21,7 +21,6 @@ public class ReminderBroadcast extends BroadcastReceiver {
     private static String HOUR = "hour";
     private static String MINUTE = "minute";
 
-
     public static void setAlarm(Context context, int hour, int minute){
         SharedPreferences preferences =  PreferenceManager.getDefaultSharedPreferences(context);
         preferences.edit()

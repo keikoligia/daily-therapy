@@ -10,6 +10,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button btnLembrete, btnResumo, btnMensagem;
+    DadosTratamento resumo = new DadosTratamento();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
