@@ -37,7 +37,12 @@ public class ReminderBroadcast extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyLemubit");
+
+        if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
+            setAlarm(context);
+            Toast.makeText(context, "Alarm set", Toast.LENGTH_LONG).show();
+
+        /*NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyLemubit");
 
         builder.setSmallIcon(icone);
         builder.setContentTitle(titulo);
@@ -47,7 +52,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
         NotificationManagerCompat notificationManagerCompat =
                 NotificationManagerCompat.from(context);
 
-        notificationManagerCompat.notify(200, builder.build());
+        notificationManagerCompat.notify(200, builder.build());*/
     }
 
     private static void setAlarm(Context context) {
