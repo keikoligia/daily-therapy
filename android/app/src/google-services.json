@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "765948822018",
+    "project_id": "daily-therapy-23813",
+    "storage_bucket": "daily-therapy-23813.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765948822018:android:9d5c5c1037783cff115d1b",
+        "android_client_info": {
+          "package_name": "br.unicamp.dailytherapy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765948822018-tbion24auo29akojgk5d3qb9ktqhn39l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM-7d4FpzMpIPmOoVCVpgho5TOGUBFt6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765948822018-tbion24auo29akojgk5d3qb9ktqhn39l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

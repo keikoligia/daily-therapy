@@ -47,7 +47,6 @@ public class Medicamento extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento);
-        //createNotificationChannel();
 
         edtNomeMedicamento = (EditText) findViewById(R.id.edtNomeMedicamento);
         edtInicioDia = (EditText) findViewById(R.id.edtInicioDia);
@@ -65,16 +64,50 @@ public class Medicamento extends AppCompatActivity {
         rbEspecifico = (RadioButton) findViewById(R.id.rbEspecifico);
         rbSemanal = (RadioButton) findViewById(R.id.rbSemanal);
 
-        rb = new ReminderBroadcast();
-
         btnSalvar.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 inserirMedicamento();
+                notification();
             }
         });
+    }
+
+    private void notification()
+    {
+        Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(Medicamento.this, 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        double clickHora = LocalDateTime.now().getHour() - 3;
+        double clickMinuto = LocalDateTime.now().getMinute();
+        double horarioClick = clickHora + (clickMinuto/60);
+        double trigger = horarioClick - clickHora;
+
+        if(trigger > 0)
+        {
+            Toast.makeText(Medicamento.this, "O tempo passou, seu alerme tocara daqui: " + (24-trigger) + " horas.", Toast.LENGTH_SHORT).show();
+            trigger = 24-trigger;
+        }
+
+        if(trigger < 0)
+        {
+            Toast.makeText(Medicamento.this, "Seu alerme tocara daqui: " + (trigger*60)*-1 + " minutos.", Toast.LENGTH_SHORT).show();
+            trigger *= -1;
+        }
+
+        if(trigger == 0)
+        {
+            trigger = trigger * 3600000;
+        }
+
+        Toast.makeText(Medicamento.this, "resultado: "+ (long)trigger*3600000 + "trigger: " + trigger, Toast.LENGTH_SHORT).show();
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
+                (long)trigger*3600000,
+                pendingIntent);
     }
 
     private void inserirMedicamento()
@@ -108,7 +141,6 @@ public class Medicamento extends AppCompatActivity {
             calendar.set(Calendar.MINUTE, Integer.parseInt(minuto));
 
             Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
-            rb.setRepeatingAlarm(this, calendar);
             rb.onReceive(this, intent);
 
             Session session = new Session(getApplicationContext());

@@ -22,8 +22,6 @@
             android:name=".Chat"
             android:exported="true" />
 
-        <service android:name=".BootService" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -50,13 +48,6 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".ReminderBroadcast"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
