@@ -28,10 +28,25 @@ public class BootService extends IntentService {
         wakeLock.acquire();
     }
 
+    //int icone = android.R.drawable.ic_dialog_info;
+    //String titulo = "Ingerir remédio";
+    //String texto = "Olá! Está na hora de você ingerir seu remédio" + "!";
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
         //Lance a notificação aqui.
+        /*NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyLemubit");
+
+        builder.setSmallIcon(icone);
+        builder.setContentTitle(titulo);
+        builder.setContentText(texto);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat =
+                NotificationManagerCompat.from(context);
+
+        notificationManagerCompat.notify(200, builder.build());*/
     }
 
     @Override
