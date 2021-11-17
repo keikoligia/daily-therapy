@@ -50,7 +50,7 @@ app.get("/usuario/login/:nome", (req, res, next) => {
 //selecionar remedio pelo nome
 app.get("/usuario/remedio/:nome", (req, res, next) => {
   var nomeUsuario = req.params;
-  var query = "SELECT nomeRemedio, inicio, fim, nome FROM remedio WHERE nome =" + "'" + nomeUsuario.nome  + "'";
+  var query = "SELECT nomeRemedio, DATE_FORMAT(inicio, '%d/%m/%Y') as inicio, DATE_FORMAT(fim, '%d/%m/%Y') as fim, nome from remedio WHERE nome =" + "'" + nomeUsuario.nome  + "'";
   console.log(query);
 
   conex.query(query, function (error, result, fields){
@@ -59,6 +59,7 @@ app.get("/usuario/remedio/:nome", (req, res, next) => {
     });
     if(result && result.length)
     {
+      console.log(result);
       return res.status(200).json(result);
     }
     else

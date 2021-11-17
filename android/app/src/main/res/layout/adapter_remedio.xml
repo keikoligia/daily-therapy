@@ -14,7 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="3"
+            android:layout_weight="1"
+            android:fontFamily="@font/ralewaybold"
+            android:textColor="@color/black"
             android:hint="Nome:" />
 
         <TextView
@@ -22,15 +24,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="2"/>
-
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:fontFamily="@font/ralewaybold"
+            android:hint="início:"/>
 
         <TextView
             android:id="@+id/tvFim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="2"/>
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:fontFamily="@font/ralewaybold"
+            android:hint="Fim:"/>
 
     </LinearLayout>
 

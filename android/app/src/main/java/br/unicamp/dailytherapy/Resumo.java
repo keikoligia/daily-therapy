@@ -42,8 +42,6 @@ public class Resumo extends AppCompatActivity
         String nomePaciente = session.getusename();
         String nomeContato = session.getCttNome();
 
-        Toast.makeText(Resumo.this, nomePaciente + " " + nomeContato, Toast.LENGTH_LONG).show();
-
         tvNomePaciente.setText(nomePaciente);
         tvNomeAcompanhante.setText(nomeContato);
 
@@ -80,12 +78,11 @@ public class Resumo extends AppCompatActivity
                     Toast.makeText(Resumo.this, "Erro ao mostrar remédios", Toast.LENGTH_LONG).show();
                 }
             });
-
     }
 
     private void populateGridView(List<Remedio> listaDog){
         gvRemedios = (GridView) findViewById(R.id.gvRemedios);
-        adapter = new ResumoAdapter(listaDog,Resumo.this);
+        adapter = new ResumoAdapter(listaDog, Resumo.this);
         gvRemedios.setAdapter(adapter);
     }
 
@@ -104,7 +101,7 @@ public class Resumo extends AppCompatActivity
                     if(response.isSuccessful())
                     {
                         remedioList = response.body();
-                        adapter = new ResumoAdapter(remedioList, Resumo.this);
+                        //adapter = new ResumoAdapter(remedioList, Resumo.this);
                         gvRemedios.setAdapter(adapter);
                     }
                     else

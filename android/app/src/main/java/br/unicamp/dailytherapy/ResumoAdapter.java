@@ -25,17 +25,17 @@ public class ResumoAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return 0;
+        return remedioList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return remedioList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
