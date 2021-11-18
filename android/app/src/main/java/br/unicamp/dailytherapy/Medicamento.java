@@ -103,8 +103,6 @@ public class Medicamento extends AppCompatActivity {
             trigger = trigger * 3600000;
         }
 
-        Toast.makeText(Medicamento.this, "resultado: "+ (long)trigger*3600000 + "trigger: " + trigger, Toast.LENGTH_SHORT).show();
-
         alarmManager.set(AlarmManager.RTC_WAKEUP,
                 (long)trigger*3600000,
                 pendingIntent);
@@ -140,13 +138,12 @@ public class Medicamento extends AppCompatActivity {
             calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hora));
             calendar.set(Calendar.MINUTE, Integer.parseInt(minuto));
 
-            Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
-            rb.onReceive(this, intent);
+            //Intent intent = new Intent(Medicamento.this, ReminderBroadcast.class);
+            //rb.onReceive(this, intent);
 
             Session session = new Session(getApplicationContext());
             String userName = session.getusename();
             Remedio remedio = new Remedio(nomeRemedio, horario, frequencia, inicio, fim, userName);
-            Toast.makeText(Medicamento.this, userName + " " + nomeRemedio + " " + horario + " " + frequencia + " " + inicio + " " + " "+ fim, Toast.LENGTH_SHORT).show();
 
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             Call<Remedio> call = service.incluirMedicamento(remedio);

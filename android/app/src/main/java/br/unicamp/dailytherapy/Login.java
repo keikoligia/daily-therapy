@@ -57,7 +57,6 @@ public class Login extends AppCompatActivity {
         Intent i = new Intent(Login.this, Medicamento.class);
         String str = edtUsuario.getText().toString();
         i.putExtra("key", str);
-        Toast.makeText(Login.this, str,  Toast.LENGTH_SHORT).show();
     }
 
     private void getUser(String nome, String senha)
@@ -67,7 +66,6 @@ public class Login extends AppCompatActivity {
             Usuario usuario = new Usuario();
             usuario.setSenha(edtSenha.getText().toString());
             usuario.setNome(edtUsuario.getText().toString());
-            //Toast.makeText(Login.this, usuario.getNome(), Toast.LENGTH_LONG).show();
 
             Service service = RetrofitConfig.getRetrofitInstance().create(Service.class);
             Call<Usuario> call = service.getUsuarioNome(nome);

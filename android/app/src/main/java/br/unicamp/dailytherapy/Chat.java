@@ -67,9 +67,6 @@ public class Chat extends AppCompatActivity {
 
         tvContato.setText(nomeCtt);
 
-        Toast.makeText(Chat.this, sEmail + " " + sPassword
-                + " " + emailCtt + " " + nomeCtt, Toast.LENGTH_LONG).show();
-
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +92,6 @@ public class Chat extends AppCompatActivity {
                             InternetAddress.parse(emailCtt));
                     message.setSubject("Seu paciente precisa de ajuda!");
                     message.setText("Olá, " + nomeCtt + "\n Seu paciente precisa de ajuda, esta é a mensagem dele: " + getMensagem());
-                    Toast.makeText(Chat.this, "mensagem: "+getMensagem(), Toast.LENGTH_LONG).show();
 
                     new SendMail().execute(message);
                 }

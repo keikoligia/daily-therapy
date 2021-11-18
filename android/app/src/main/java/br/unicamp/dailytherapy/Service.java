@@ -21,10 +21,6 @@ interface Service
     @POST("/usuario/remedio")
     Call<Remedio> incluirMedicamento(@Body Remedio remedio);
 
-    //resumo
-    @POST("/usuario/remedio")
-    Call<Remedio> gerarPdf(@Body DadosTratamento resumo);
-
     @GET("/usuario/remedio/{nome}")
     Call<List<Remedio>> mostrarRemedio(@Path("nome") String nome);
 }
